@@ -2,52 +2,71 @@ package com.test.project.gameofchess;
 
 import java.util.Scanner;
 
+import com.test.project.gameofchess.chesspiece.ChessPiece;
+import com.test.project.gameofchess.dto.ChessPosition;
+import com.test.project.gameofchess.exception.InvalidInputException;
+
 /**
  * Process position of chess piece type on chess board as an 
  * input from STDIN (e.g. "King D5")
  * to print all possible positions applicable to type of chess piece.
  *
  */
-public class GameOfChess
-{
-	// possible rows
-	private static final char[] ROWS =  {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
-	// possible columns
-	private static final int COLUMNS = 8;
+public class GameOfChess {
 	
     public static void main( String[] args )
-    {
-       System.out.println("Please enter chess board position: ");
-       Scanner in = new Scanner(System.in);
-       String input = null;
-       if(in.hasNext()) {
-    	   input = in.nextLine();
-       }
-       in.close();
-       
-       System.out.println("Echo Input:" + input);
-       System.out.println();
-       if(input == null || !validateInput(input)) {    	   
-    	   System.out.println("Please enter valid input, it should contain Chess piece name followed by valid position e.g. King D5");
-       } else {
-    	   ChessInputDto chessInput = populateChessInput(input);
-       }
-    }
+	{
+		String input = null;
+		try {
+			System.out.println("Please enter chess board position: ");
+			Scanner in = new Scanner(System.in);
+
+			if (in.hasNext()) {
+				input = in.nextLine();
+			}
+			in.close();
+
+			System.out.println("Echo Input:" + input);
+			System.out.println();
+
+			validateInput(input);
+
+			String[] splitInput = input.split(" ");
+			ChessPosition chessInput = ChessPosition.populateChessInput(splitInput[1]);
+			ChessPiece piece = ChessPieceFactory.getChessPieceForType(splitInput[0]);
+			piece.printPossibleMoves(chessInput);
+
+		} catch (Exception e) {
+			System.out.println("Error trying to parse input: " + input + " please enter valid input ");
+		}
+	}
     
     /**
      * Validate input obtained from console.
      * @param input
+     * @throws Exception 
      */
-    private static boolean validateInput(String input) {
-    	return true;
-    }
+	public static void validateInput(String input) throws Exception {
+		try {
+			boolean isValidInput = false;
+			String[] splitInput = input.split(" ");
+			if (splitInput.length == 2) {
+				String position = splitInput[1];
+				char[] posArr = position.toCharArray();
+				if (posArr.length == 2 && ChessPosition.isRowValid(posArr[0])
+						&& ChessPosition.isColumnValid(posArr[1])) {
+					isValidInput = true;
+				}
+			}
+			if(!isValidInput) {
+				throw new InvalidInputException();
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+	}
     
-    /**
-     * Populate chess board input
-     * @param input
-     * @return
-     */
-    private static ChessInputDto populateChessInput(String input) {
-    	return null;
-    }
+    
+    
+    
 }
