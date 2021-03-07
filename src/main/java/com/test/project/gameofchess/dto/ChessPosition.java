@@ -19,6 +19,8 @@ public class ChessPosition {
 	}
 	// possible columns
 	public static final int COLUMNS = 8;
+	// possible columns
+    public static final int START_COLUMNS = 1;
 
 	int position;
 	String currRow;
@@ -97,6 +99,43 @@ public class ChessPosition {
     		nextRow = ROWS.get(index + 1);
     	}
     	return nextRow;
+	}
+	
+	/**
+	 * Return all rows to the left
+	 * @param currRow
+	 * @return
+	 */
+	public static List<String> getAllToTheLeft(String currRow) {
+		List<String> leftStr = new ArrayList<String>();
+		for(int i=0; i<ROWS.size(); i++) {
+			String left = ROWS.get(i);
+			if(currRow.equals(left)) {
+				break;
+			}
+			leftStr.add(left);
+		}
+		return leftStr;
+	}
+	
+	/**
+	 * Return all rows to the right
+	 * @param currRow
+	 * @return
+	 */
+	public static List<String> getAllToTheRight(String currRow) {
+		List<String> rightStr = new ArrayList<String>();
+		int indexCurr = -1;
+		for(int j=0; j<ROWS.size(); j++) {
+			String right = ROWS.get(j);
+			if(currRow.equals(right)) {
+				indexCurr = j;
+			}
+			if(indexCurr != -1 && j > indexCurr) {
+				rightStr.add(right);
+			}			
+		}
+		return rightStr;
 	}
 	
 }

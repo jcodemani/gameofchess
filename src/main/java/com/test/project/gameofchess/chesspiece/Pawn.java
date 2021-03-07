@@ -9,12 +9,12 @@ import com.test.project.gameofchess.dto.ChessPosition;
  */
 public class Pawn implements ChessPiece {
 
-	public void printPossibleMoves(ChessPosition inputDto) {
+	public String getPossibleMoves(ChessPosition inputDto) {
 		String possiblePossition = "";
-		if(inputDto.getPosition() < 8) {
+		if(inputDto.getPosition() < ChessPosition.COLUMNS) {
 			possiblePossition = inputDto.getCurrRow() + (inputDto.getPosition() + 1);
 		}
-		System.out.println(possiblePossition);
+		return possiblePossition.toString();
 	}
 
 }
