@@ -37,6 +37,34 @@ public class TestQueen extends TestCase {
     	ChessPiece piece = ChessPieceFactory.getChessPieceForType("Queen");
     	String queenMoves = piece.getPossibleMoves(chessInput);
     	
-    	System.out.println(queenMoves);
+    	assertTrue(queenMoves.contains("A5"));
+    	assertTrue(queenMoves.contains("C5"));
+    	assertTrue(queenMoves.contains("D5"));
+    	assertTrue(queenMoves.contains("E5"));
+    	assertTrue(queenMoves.contains("F5"));
+    	assertTrue(queenMoves.contains("G5"));
+    	assertTrue(queenMoves.contains("H5"));
+    	
+    	assertTrue(queenMoves.contains("B4"));
+    	assertTrue(queenMoves.contains("B3"));
+    	assertTrue(queenMoves.contains("B2"));
+    	assertTrue(queenMoves.contains("B1"));
+    	
+    	assertTrue(queenMoves.contains("B6"));
+    	assertTrue(queenMoves.contains("B7"));
+    	assertTrue(queenMoves.contains("B8"));
+    	
+    	assertTrue(queenMoves.contains("A4"));
+    	assertTrue(queenMoves.contains("A6"));
+    	assertTrue(queenMoves.contains("C6"));
+    	assertTrue(queenMoves.contains("D7"));
+    	assertTrue(queenMoves.contains("D3"));
+    	assertTrue(queenMoves.contains("C4"));
+    	assertTrue(queenMoves.contains("E2"));
+    	assertTrue(queenMoves.contains("F1"));
+    	assertTrue(queenMoves.contains("E8"));
+    	
+    	String[] splits = queenMoves.split(",");
+    	assertEquals(splits.length, 23 );
     }
 }

@@ -58,14 +58,14 @@ public class Horse implements ChessPiece {
 				if(possiblePositions.length() != 0) {
 					possiblePositions.append(",");
 				}
-				possiblePositions.append(leftRows.get(1));
+				possiblePositions.append(leftRows.get(leftRows.size() - 2));
 				possiblePositions.append(position - 1);
 			}
 			if((position + 1) <= ChessPosition.COLUMNS) {
 				if(possiblePositions.length() != 0) {
 					possiblePositions.append(",");
 				}
-				possiblePositions.append(leftRows.get(1));
+				possiblePositions.append(leftRows.get(leftRows.size() - 2));
 				possiblePositions.append(position + 1);
 			}
 		}

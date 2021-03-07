@@ -33,9 +33,20 @@ public class TestHorse extends TestCase {
     */
     public void testHorsePostions() throws InvalidInputException
     {
-    	ChessPosition chessInput = ChessPosition.populateChessInput("B5");
+    	ChessPosition chessInput = ChessPosition.populateChessInput("E3");
     	ChessPiece piece = ChessPieceFactory.getChessPieceForType("Horse");
     	String horse = piece.getPossibleMoves(chessInput);
-    	System.out.println(horse);
+
+    	assertTrue(horse.contains("D5"));
+    	assertTrue(horse.contains("F5"));
+    	assertTrue(horse.contains("G4"));
+    	assertTrue(horse.contains("G2"));
+    	assertTrue(horse.contains("F1"));
+    	assertTrue(horse.contains("D1"));
+    	assertTrue(horse.contains("C2"));
+    	assertTrue(horse.contains("C4"));
+    	
+    	String[] splits = horse.split(",");
+    	assertEquals(splits.length, 8);
     }
 }

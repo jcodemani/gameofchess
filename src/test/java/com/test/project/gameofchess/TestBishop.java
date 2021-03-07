@@ -36,6 +36,18 @@ public class TestBishop extends TestCase {
     	ChessPosition chessInput = ChessPosition.populateChessInput("B5");
     	ChessPiece piece = ChessPieceFactory.getChessPieceForType("Bishop");
     	String bishop = piece.getPossibleMoves(chessInput);
-    	System.out.println(bishop);
+    	
+    	assertTrue(bishop.contains("A4"));
+    	assertTrue(bishop.contains("A6"));
+    	assertTrue(bishop.contains("C6"));
+    	assertTrue(bishop.contains("D7"));
+    	assertTrue(bishop.contains("D3"));
+    	assertTrue(bishop.contains("C4"));
+    	assertTrue(bishop.contains("E2"));
+    	assertTrue(bishop.contains("F1"));
+    	assertTrue(bishop.contains("E8"));
+    	
+    	String[] splits = bishop.split(",");
+    	assertEquals(splits.length, 9);
     }
 }
