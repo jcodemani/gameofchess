@@ -11,8 +11,11 @@ public interface ChessPiece {
 	
 	/**
 	 * 
-	 * @param inputDto : input regarding current chess position.
+	 * @param inputDto
+	 * @return String : all posible positions of a ChessPiece in 
+	 *         comma separated format e.g. D6,E6,E5,E4,	D4,	C4,	C5,	C6
+	 *         for given ChessPostion
 	 */
-	public void printPossibleMoves(ChessPosition inputDto);
+	public String getPossibleMoves(ChessPosition inputDto);
 
 }

@@ -3,8 +3,13 @@ package com.test.project.gameofchess;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.test.project.gameofchess.chesspiece.Bishop;
 import com.test.project.gameofchess.chesspiece.ChessPiece;
+import com.test.project.gameofchess.chesspiece.Horse;
 import com.test.project.gameofchess.chesspiece.King;
+import com.test.project.gameofchess.chesspiece.Pawn;
+import com.test.project.gameofchess.chesspiece.Queen;
+import com.test.project.gameofchess.chesspiece.Rook;
 import com.test.project.gameofchess.exception.InvalidInputException;
 
 /**
@@ -19,6 +24,11 @@ public class ChessPieceFactory {
 	static {
 		chessPieceTypeToInstance = new HashMap<String, ChessPiece>();
 		chessPieceTypeToInstance.put("King", new King());
+		chessPieceTypeToInstance.put("Queen", new Queen());
+		chessPieceTypeToInstance.put("Rook", new Rook());
+		chessPieceTypeToInstance.put("Bishop", new Bishop());
+		chessPieceTypeToInstance.put("Horse", new Horse());
+		chessPieceTypeToInstance.put("Pawn", new Pawn());
 	}
 	
 	/**

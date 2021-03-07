@@ -34,8 +34,8 @@ public class GameOfChess {
 			String[] splitInput = input.split(" ");
 			ChessPosition chessInput = ChessPosition.populateChessInput(splitInput[1]);
 			ChessPiece piece = ChessPieceFactory.getChessPieceForType(splitInput[0]);
-			piece.printPossibleMoves(chessInput);
-
+			String output = piece.getPossibleMoves(chessInput);
+			System.out.print(output);
 		} catch (Exception e) {
 			System.out.println("Error trying to parse input: " + input + " please enter valid input ");
 		}

@@ -1,8 +1,5 @@
 package com.test.project.gameofchess;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 import com.test.project.gameofchess.chesspiece.ChessPiece;
 import com.test.project.gameofchess.dto.ChessPosition;
 import com.test.project.gameofchess.exception.InvalidInputException;
@@ -10,18 +7,15 @@ import com.test.project.gameofchess.exception.InvalidInputException;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-
-public class TestChessPiece extends TestCase {
+/**
+ * Test King
+ * @author Manasi Apte
+ *
+ */
+public class TestKing extends TestCase {
 	
-	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	private final PrintStream originalOut = System.out;
-	
-	public TestChessPiece(String testName) {
+	public TestKing(String testName) {
 		super( testName );
-	}
-
-	protected void setUp() throws Exception {
-		System.setOut(new PrintStream(outContent));
 	}
 	
 	/**
@@ -29,7 +23,7 @@ public class TestChessPiece extends TestCase {
      */
     public static Test suite()
     {
-    	return new TestSuite(TestChessPiece.class); 
+    	return new TestSuite(TestKing.class); 
     }
     
 	/**
@@ -40,9 +34,19 @@ public class TestChessPiece extends TestCase {
     {
     	ChessPosition chessInput = ChessPosition.populateChessInput("D5");
     	ChessPiece piece = ChessPieceFactory.getChessPieceForType("King");
-    	piece.printPossibleMoves(chessInput);
-    	assertEquals("D6,E6,E5,E4,D4,C4,C5,C6", outContent.toString());
-    	outContent.reset();
+    	String kingMoves = piece.getPossibleMoves(chessInput);
+    	
+    	assertTrue(kingMoves.contains("D6"));
+    	assertTrue(kingMoves.contains("E6"));
+    	assertTrue(kingMoves.contains("E5"));
+    	assertTrue(kingMoves.contains("E4"));
+    	assertTrue(kingMoves.contains("D4"));
+    	assertTrue(kingMoves.contains("C4"));
+    	assertTrue(kingMoves.contains("C5"));
+    	assertTrue(kingMoves.contains("C6"));
+    	
+    	String[] splits = kingMoves.split(",");
+    	assertEquals(splits.length, 8);
     }
     
 
@@ -54,9 +58,14 @@ public class TestChessPiece extends TestCase {
     {
     	ChessPosition chessInput = ChessPosition.populateChessInput("A8");
     	ChessPiece piece = ChessPieceFactory.getChessPieceForType("King");
-    	piece.printPossibleMoves(chessInput);
-    	assertEquals("B7,A7,B8", outContent.toString());
-    	outContent.reset();
+    	String kingMoves = piece.getPossibleMoves(chessInput);
+    	
+    	assertTrue(kingMoves.contains("B7"));
+    	assertTrue(kingMoves.contains("A7"));
+    	assertTrue(kingMoves.contains("B8"));
+    	
+    	String[] splits = kingMoves.split(",");
+    	assertEquals(splits.length, 3);
     }
     
     /**
@@ -81,10 +90,6 @@ public class TestChessPiece extends TestCase {
 		} catch (Exception e) {
 			assertTrue(true);
 		}
-    }
-    
-    protected void tearDown() throws Exception {
-    	System.setOut(originalOut);
     }
 
 }
